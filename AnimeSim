@@ -4,14 +4,14 @@ local OwO = library:Window("Anime Fantasy Simulator")
 
 
 
-OwO:Toggle("AutoFarm (Nearest Mob)", false, function(Value)
+OwO:Toggle("AutoFarm", false, function(Value)
  a = Value
         while a do task.wait()
         pcall(function()
 local player = game.Players.LocalPlayer
 
 
-wait() -- load character
+wait(.1) -- load character
 
 local char = player.Character
 local char_root = char:FindFirstChild("HumanoidRootPart")
