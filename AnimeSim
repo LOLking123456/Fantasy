@@ -6,7 +6,7 @@ local OwO = library:Window("Anime Fantasy Simulator")
 
 OwO:Toggle("AutoFarm", false, function(Value)
  a = Value
-        while a do task.wait()
+        while a do task.wait(.1)
         pcall(function()
 local player = game.Players.LocalPlayer
 
