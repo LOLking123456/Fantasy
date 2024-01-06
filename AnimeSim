@@ -1,0 +1,172 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/turtle"))()
+
+local OwO = library:Window("Anime Fantasy Simulator")
+
+
+
+OwO:Toggle("AutoFarm (Nearest Mob)", false, function(Value)
+ a = Value
+        while a do task.wait()
+        pcall(function()
+local player = game.Players.LocalPlayer
+
+
+wait() -- load character
+
+local char = player.Character
+local char_root = char:FindFirstChild("HumanoidRootPart")
+
+    local nearest_hum = math.huge
+
+    local target_root
+    local target_hum
+
+    for i, v in pairs(workspace.Enemies:GetDescendants()) do
+        local root = v:FindFirstChild("HumanoidRootPart")
+        local hum = v:FindFirstChild("Humanoid")
+
+        if root and hum and v ~= char then
+            local mag = (char_root.Position - root.Position).magnitude
+
+            if mag < 100 and mag < nearest_hum then
+
+                local obstructed = false
+
+                local ray = Ray.new(char_root.Position, (root.Position - char_root.Position).unit * 20)
+
+                local part = workspace:FindPartOnRay(ray, char, false, true)
+
+                if part then
+                    if part.Parent ~= v then
+                        obstructed = true
+                    end
+                end
+
+                if obstructed == false then
+                    nearest_hum = mag
+                    target_root = root
+                    target_hum = hum
+                end
+            end
+        end
+    end
+
+    if target_root and target_hum then
+        nearest_hum = math.huge
+
+        local behind = (target_root.CFrame *  CFrame.new(0,4,0)).p -- the behind lol
+
+        char_root.CFrame = CFrame.new(behind)
+
+        target_hum:TakeDamage()
+    end
+end)
+end
+end)
+
+OwO:Toggle("Kill Aura", false, function(Value)
+  a = Value
+        while a do task.wait(.4)
+        pcall(function()
+local vim = game:GetService("VirtualInputManager")
+local player = game.Players.LocalPlayer
+local starterGui = player:WaitForChild("PlayerGui")
+
+-- Function to find a GUI element by type (you might need to customize this based on your needs)
+local function findGuiElement(parent, targetType)
+    for _, descendant in pairs(parent:GetDescendants()) do
+        if descendant:IsA(targetType) then
+            return descendant
+        end
+    end
+    return nil
+end
+
+-- Find the GUI element
+local x = findGuiElement(starterGui, "GuiObject") -- Replace "GuiObject" with the type of GUI element you're looking for
+
+if x then
+    local clickX = x.AbsolutePosition.X + x.AbsoluteSize.X / 2 - 205 -- Adjust the value (e.g., subtract 10 for a more left position)
+    local clickY = x.AbsolutePosition.Y + x.AbsoluteSize.Y / 2 + 60 -- Adjust the value (e.g., add 10 for a lower position)
+
+    vim:SendMouseButtonEvent(clickX, clickY, 0, true, x, 1)
+    vim:SendMouseButtonEvent(clickX, clickY, 0, false, x, 1)
+else
+    warn("No suitable GUI element found")
+end
+
+  end)
+        end
+end)
+
+OwO:Toggle("Auto Energy", false, function(Value)
+        a = Value
+        while a do task.wait()
+        pcall(function()
+local args = {
+    [1] = {
+        [1] = {
+            [1] = "Click",
+            [2] = {}
+        },
+        [2] = "\2"
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("dataRemoteEvent"):FireServer(unpack(args))
+
+
+        end)
+        end
+end)
+
+
+OwO:Toggle("Fruit Sniper", false, function(Value)
+        a = Value
+        while a do task.wait()
+        pcall(function()
+for i,v in pairs(game.Workspace["SpawnedFruits"]:GetDescendants()) do
+ if v:IsA("Mesh") then
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame 
+end
+end
+        end)
+        end
+end)
+
+OwO:Toggle("Auto Collect Drops", false, function(Value)
+        a = Value
+        while a do task.wait()
+        pcall(function()
+for i,v in pairs(game.Workspace["Misc"].Drops:GetDescendants()) do
+ if v:IsA("Part") then
+    v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+end
+        end)
+        end
+end)
+
+
+OwO:Button("FPS Booster", function()
+       for _,v in pairs(workspace:GetDescendants()) do
+if v.ClassName == "Part"
+or v.ClassName == "SpawnLocation"
+or v.ClassName == "WedgePart"
+or v.ClassName == "Terrain"
+or v.ClassName == "MeshPart" then
+v.Material = "Plastic"
+end
+end
+end)
+
+OwO:Slider("Walkspeed",16,250,16, function(s)
+  getgenv().WalkSpeedValue = (s); --set your desired walkspeed here
+local Player = game:service'Players'.LocalPlayer;
+Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+
+OwO:Label("Credits to Legend Handles", Color3.fromRGB(127, 143, 166))
