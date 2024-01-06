@@ -6,12 +6,12 @@ local OwO = library:Window("Anime Fantasy Simulator")
 
 OwO:Toggle("AutoFarm", false, function(Value)
  a = Value
-        while a do task.wait(.55)
+        while a do task.wait(.05)
         pcall(function()
 local player = game.Players.LocalPlayer
 
 
-wait(.55) -- load character
+wait() -- load character
 
 local char = player.Character
 local char_root = char:FindFirstChild("HumanoidRootPart")
