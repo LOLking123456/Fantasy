@@ -11,7 +11,7 @@ OwO:Toggle("AutoFarm", false, function(Value)
 local player = game.Players.LocalPlayer
 
 
-wait() -- load character
+wait(.05) -- load character
 
 local char = player.Character
 local char_root = char:FindFirstChild("HumanoidRootPart")
