@@ -6,12 +6,12 @@ local OwO = library:Window("Anime Fantasy Simulator")
 
 OwO:Toggle("AutoFarm", false, function(Value)
  a = Value
-        while a do task.wait()
+        while a do task.wait(.1)
         pcall(function()
 local player = game.Players.LocalPlayer
 
 
-wait() -- load character
+wait(.1) -- load character
 
 local char = player.Character
 local char_root = char:FindFirstChild("HumanoidRootPart")
@@ -28,7 +28,7 @@ local char_root = char:FindFirstChild("HumanoidRootPart")
         if root and hum and v ~= char then
             local mag = (char_root.Position - root.Position).magnitude
 
-            if mag < 250 and mag < nearest_hum then
+            if mag < 200 and mag < nearest_hum then
 
                 local obstructed = false
 
