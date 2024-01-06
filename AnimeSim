@@ -126,7 +126,7 @@ OwO:Toggle("Fruit Sniper", false, function(Value)
         while a do task.wait()
         pcall(function()
 for i,v in pairs(game.Workspace["SpawnedFruits"]:GetDescendants()) do
- if v:IsA("Mesh") then
+ if v:IsA("MeshPart") then
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame 
 end
 end
